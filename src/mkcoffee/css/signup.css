@@ -1,0 +1,11 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    -fx-background-image: url("file:/Users/maikhanh/NetBeansProjects/MKCoffee/src/mkcoffee/image/ESPRESSO-COFFEE.png");
+}
+
+#AnchorPane {
+    -fx-background-image: url("file:/Users/maikhanh/NetBeansProjects/MKCoffee/src/mkcoffee/image/SPECIAL-TEA.png");
+}

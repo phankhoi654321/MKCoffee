@@ -1,0 +1,86 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+FontAwesomeIcon:hover {
+	-fx-cursor: hand;
+}
+
+#side_nav .hoverla:hover {
+ -fx-background-color:  #33cc94;
+ -fx-cursor: hand;
+}
+
+#side_nav .noHover:hover {
+/* -fx-background-color:  none;
+ -fx-cursor: none;*/
+}
+
+.table-view *.scroll-bar:horizontal *.increment-button,
+.table-view *.scroll-bar:horizontal *.decrement-button {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.table-view *.scroll-bar:horizontal *.increment-arrow, 
+.table-view *.scroll-bar:horizontal *.decrement-arrow {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-shape: null;
+    
+}
+
+.table-view .column-header {
+    -fx-alignment: center;
+    -fx-border-width:  0 0 1.5 0px;
+    -fx-border-color: blue;
+    -fx-background-color: white;
+    -fx-margin: 20;
+    -fx-font-size: 13px;
+    -fx-font-weight: bolder;
+}
+
+.tree-table-view .column-header {
+    -fx-alignment: center;
+    -fx-border-width:  0 0 1.5 0px;
+    -fx-border-color: blue;
+    -fx-background-color: #92c5f3;
+    -fx-margin: 20;
+    /*-fx-font-size: 16px;*/
+    /*-fx-font-weight: bolder;*/
+    -fx-border-width: 0 0 1 0;
+    
+}
+
+.tree-table-view .column-header .label {
+    -fx-font-size: 16px;
+    /*-fx-font-family: "Segoe UI Light";*/
+    -fx-text-fill: #273c75;
+    /*-fx-alignment: center-left;*/
+    -fx-font-weight: bolder;
+    /*-fx-opacity: 1;*/
+}
+
+.inputColor {
+    -fx-text-fill: white;
+}
+
+.comboGender .label{
+    -fx-text-fill: black;
+}
+
+.jfx-text-field{
+    -fx-prompt-text-fill: #CDDC49;
+}
+
+/*.jfx-text-field {
+-fx-prompt-text-fill: #989898;
+}*/

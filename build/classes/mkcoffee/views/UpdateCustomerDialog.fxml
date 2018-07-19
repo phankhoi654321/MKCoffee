@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<DialogPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mkcoffee.controllers.UpdateCustomerDialogController">
+    
+    <content>
+        <GridPane hgap="10" vgap="10">
+            <Label text="Full Name" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="nameUpdate" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label text="Address" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="addUpdate" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Phone Number" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="phoneUpdate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Email" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+         <TextField fx:id="emailUpdate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+        </GridPane>
+    </content>
+    
+    <stylesheets>
+        <URL value="@/mkcoffee/css/updatecustomerdialog.css" />
+    </stylesheets>
+    <header>
+        <Label text="Update Customer Information">
+            <font>
+                <Font size="14.0" />
+            </font>
+            <padding>
+                <Insets bottom="5.0" left="5.0" top="10.0" />
+            </padding>
+        </Label>
+    </header>
+</DialogPane>

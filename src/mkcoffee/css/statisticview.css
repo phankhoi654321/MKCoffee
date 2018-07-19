@@ -1,0 +1,16 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+.jfx-date-picker{
+    -fx-prompt-text-fill: #CDDC49;
+    -fx-text-fill: white;
+}
+
+.inputColor {
+    -fx-text-fill: white;
+}

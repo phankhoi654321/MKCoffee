@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="533.0" prefWidth="800.0" stylesheets="@../css/signup.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mkcoffee.controllers.SignUpController">
+    
+    <children>
+        <Pane layoutX="171.0" layoutY="69.0" opacity="0.7" prefHeight="396.0" prefWidth="459.0" style="-fx-background-color: #fff;">
+            <children>
+                <JFXTextField fx:id="fullName" focusColor="#047f5c" labelFloat="true" layoutX="65.0" layoutY="40.0" promptText="Full Name" unFocusColor="#047f5c">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </JFXTextField>
+                <JFXTextField fx:id="email" focusColor="#047f5c" labelFloat="true" layoutX="256.0" layoutY="40.0" promptText="Email" unFocusColor="#047f5c">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </JFXTextField>
+                
+                <JFXTextField fx:id="phoneNumber" focusColor="#407f5c" labelFloat="true" layoutX="65.0" layoutY="99.0" promptText="Phone Number" unFocusColor="#407f5c">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </JFXTextField>
+                <JFXTextField fx:id="userName" focusColor="#047f5c" labelFloat="true" layoutX="63.0" layoutY="196.0" maxWidth="366.0" minWidth="317.0" prefWidth="366.0" promptText="User Name" unFocusColor="#047f5c">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </JFXTextField>
+                <JFXPasswordField fx:id="password" focusColor="#047f5c" labelFloat="true" layoutX="63.0" layoutY="245.0" maxWidth="366.0" minWidth="317.0" prefWidth="366.0" promptText="Password" unFocusColor="#047f5c">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </JFXPasswordField>
+                <JFXButton buttonType="RAISED" layoutX="303.0" layoutY="307.0" onAction="#register" prefHeight="41.0" prefWidth="115.0" ripplerFill="WHITE" style="-fx-background-color: #00c0ff;" text="Register" textFill="WHITE" />
+                <JFXButton buttonType="RAISED" layoutX="172.0" layoutY="307.0" onAction="#cancelAction" prefHeight="41.0" prefWidth="115.0" ripplerFill="WHITE" style="-fx-background-color: #ffa900;" text="Cancel" textFill="WHITE" />
+                <JFXComboBox fx:id="combo" focusColor="#047f5c" layoutX="256.0" layoutY="97.0" maxWidth="163.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="163.0" promptText="Gender" unFocusColor="#047f5c"> 
+
+                </JFXComboBox>
+            <JFXDatePicker fx:id="birthday" defaultColor="#047f5c" layoutX="256.0" layoutY="153.0" promptText="Birthday" />
+                
+<!--                <JFXComboBox id="jfxComboBox" prefWidth="200" fx:id="combo"
+                                 promptText="Select Item">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <Label>
+                                    Item 1
+                                </Label>
+                                <Label>
+                                    Item 2
+
+                                </Label>
+                                
+                          
+                            </FXCollections>
+                        </items>
+                    </JFXComboBox>-->
+
+            </children>
+            <effect>
+                <DropShadow color="#838383" />
+            </effect>
+        </Pane>
+    </children>
+
+</AnchorPane>

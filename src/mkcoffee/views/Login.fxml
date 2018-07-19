@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="800.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mkcoffee.controllers.LoginController">
+    <children>
+        <Pane layoutX="150.0" layoutY="109.0" opacity="0.7" prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: #fff; -fx-background-radius: 40px;">
+            <effect>
+                <DropShadow color="#9e9e9e" />
+            </effect>
+            <children>
+                <Label layoutX="205.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="90.0" text="Sign in" textFill="#004ecd">
+                    <font>
+                        <Font name="Microsoft JhengHei UI Light" size="28.0" />
+                    </font>
+                </Label>
+                <JFXTextField fx:id="userNameLogin" focusColor="#029a83" labelFloat="true" layoutX="143.0" layoutY="94.0" maxWidth="215.0" minWidth="196.0" prefHeight="31.0" prefWidth="215.0" promptText="Username" unFocusColor="#029a83" />
+                <JFXPasswordField fx:id="userPassLogin" focusColor="#029a83" labelFloat="true" layoutX="143.0" layoutY="150.0" maxWidth="215.0" minWidth="196.0" prefHeight="31.0" prefWidth="215.0" promptText="Password" unFocusColor="#029a83" />
+                <JFXButton buttonType="RAISED" layoutX="196.0" layoutY="199.0" onAction="#signinAction" prefHeight="37.0" prefWidth="110.0" ripplerFill="WHITE" style="-fx-background-color: #33cc94; -fx-background-radius: 50px;" text="Get started" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></JFXButton>
+            <JFXButton layoutX="101.0" layoutY="256.0" onAction="#forgetPassword" text="Forgot Password" textFill="#b2b2b2">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="270.0" layoutY="256.0" onAction="#signupAction" text="Create a new account" textFill="#2c3e50">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="179.0" layoutY="58.0" text="Hello, please sign in to start" textFill="#b2b2b2">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

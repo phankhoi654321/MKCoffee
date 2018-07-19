@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="loadingAnchorPane" prefHeight="363.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mkcoffee.controllers.LoadingController">
+   <children>
+      <ImageView fitHeight="363.0" fitWidth="587.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/ESPRESSO-COFFEE.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="15.0" layoutY="89.0" text="Have a nice day with coffee!" textFill="#b92c7b">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <JFXProgressBar layoutX="89.0" layoutY="180.0" />
+      <Label layoutX="84.0" layoutY="14.0" text="Welcome" textFill="#36597c">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label layoutX="84.0" layoutY="220.0" text="MKCoffee" textFill="#27ae60">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+   </children>
+   
+   <stylesheets>
+        <URL value="@/mkcoffee/css/loading.css" />
+    </stylesheets>
+</AnchorPane>
