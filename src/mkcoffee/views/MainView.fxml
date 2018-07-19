@@ -5520,7 +5520,7 @@
                                                 <PropertyValueFactory property="price" />
                                             </cellValueFactory>
                                         </TableColumn>
-                                        <TableColumn prefWidth="75.0" style="-fx-alignment: center;" text="Amount"> 
+                                        <TableColumn fx:id="tableAmount" prefWidth="75.0" style="-fx-alignment: center;" text="Amount"> 
                                             <cellValueFactory>
                                                 <PropertyValueFactory property="totalPrice" />
                                             </cellValueFactory>

@@ -14,6 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,10 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -166,10 +170,19 @@ public class StatisticViewController implements Initializable {
 
     @FXML
     private NumberAxis y;
+    
+    private int minute;
+    private int hour;
+    private int second;
+
+    private int day;
+    private int month;
+    private int year;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        receiptIssueBtn.setStyle("-fx-background-color: #bdc3c7");
+        receiptIssueBtn.setStyle("-fx-background-color: white");
+        orderBtn.setStyle("-fx-background-color: #bdc3c7");
 
         y.setLabel("Money");
         x.setLabel("Month");
@@ -265,6 +278,29 @@ public class StatisticViewController implements Initializable {
                 searchInvoiceLater(orderList.getOrderId());
             }
         });
+        
+        DecimalFormat myFormatter = new DecimalFormat("00");
+        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                Calendar cal = Calendar.getInstance();
+                second = cal.get(Calendar.SECOND);
+
+                minute = cal.get(Calendar.MINUTE);
+                hour = cal.get(Calendar.HOUR_OF_DAY);
+
+                day = cal.get(Calendar.DATE);
+
+                month = cal.get(Calendar.MONTH) + 1;
+                year = cal.get(Calendar.YEAR);
+
+                date.setText(year + "-" + myFormatter.format(month) + "-" + myFormatter.format(day) + " " + myFormatter.format(hour) + ":" + myFormatter.format(minute) + ":" + myFormatter.format(second));
+            }
+        }),
+                new KeyFrame(Duration.seconds(1))
+        );
+        clock.setCycleCount(Animation.INDEFINITE);
+        clock.play();
 
     }
     
@@ -402,7 +438,7 @@ public class StatisticViewController implements Initializable {
     public void myEmployeeId(String name, String userId, String datetime, String month) {
         employeeId.setText(userId);
         employeeName.setText(name);
-        date.setText(datetime);
+//        date.setText(datetime);
 
     }
 
@@ -415,6 +451,9 @@ public class StatisticViewController implements Initializable {
             issueTableView.setItems(issueProducts);
         }
         totalIssueValue();
+        issueEmployeeID.clear();
+        nameComboBoxIssue.setValue(null);
+        kindComboBoxIssue.setValue(null);
     }
 
     @FXML
@@ -426,6 +465,9 @@ public class StatisticViewController implements Initializable {
             issueTableView.setItems(issueProducts);
         }
         totalIssueValue();
+        issueEmployeeID.clear();
+        issueDate1.setValue(null);
+        issueDate2.setValue(null);
     }
 
     @FXML
@@ -438,7 +480,9 @@ public class StatisticViewController implements Initializable {
         }
         
         totalReceiptValue();
-
+        receiptEmployeeID.clear();
+        nameComboBox.setValue(null);
+        kindComboBox.setValue(null);
     }
 
     @FXML
@@ -450,7 +494,10 @@ public class StatisticViewController implements Initializable {
             issueTableView.setItems(issueProducts);
         }
         totalIssueValue();
-
+        issueDate1.setValue(null);
+        issueDate2.setValue(null);
+        nameComboBoxIssue.setValue(null);
+        kindComboBoxIssue.setValue(null);
     }
 
     @FXML
@@ -463,7 +510,10 @@ public class StatisticViewController implements Initializable {
         }
         
         totalReceiptValue();
-
+        nameComboBox.setValue(null);
+        kindComboBox.setValue(null);
+        receiptDate1.setValue(null);
+        receiptDate2.setValue(null);
     }
 
     @FXML
@@ -547,6 +597,9 @@ public class StatisticViewController implements Initializable {
         }
         
         totalReceiptValue();
+        receiptEmployeeID.clear();
+        receiptDate1.setValue(null);
+        receiptDate2.setValue(null);
 
     }
 
@@ -555,8 +608,8 @@ public class StatisticViewController implements Initializable {
         makeFadeIn(receiptIssueView);
         orderView.managedProperty().bind(orderView.visibleProperty());
         orderView.setVisible(false);
-        orderBtn.setStyle("-fx-background-color: white");
-        receiptIssueBtn.setStyle("-fx-background-color: #bdc3c7");
+        orderBtn.setStyle("-fx-background-color: #bdc3c7");
+        receiptIssueBtn.setStyle("-fx-background-color: white");
         receiptIssueView.managedProperty().bind(receiptIssueView.visibleProperty());
         receiptIssueView.setVisible(true);
 
@@ -624,8 +677,8 @@ public class StatisticViewController implements Initializable {
         makeFadeIn(orderView);
         receiptIssueView.managedProperty().bind(receiptIssueView.visibleProperty());
         receiptIssueView.setVisible(false);
-        receiptIssueBtn.setStyle("-fx-background-color: white");
-        orderBtn.setStyle("-fx-background-color: #bdc3c7");
+        receiptIssueBtn.setStyle("-fx-background-color: #bdc3c7");
+        orderBtn.setStyle("-fx-background-color: white");
         orderView.managedProperty().bind(orderView.visibleProperty());
         orderView.setVisible(true);
         LocalDate localDate = LocalDate.now();

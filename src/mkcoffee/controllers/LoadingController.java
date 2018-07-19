@@ -49,14 +49,13 @@ public class LoadingController implements Initializable {
 
         @Override
         public void run() {
-
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
 
                     try {
                         FadeTransition fadeout = new FadeTransition(Duration.seconds(2), loadingAnchorPane);
-                        fadeout.setFromValue(1);
+                        fadeout.setFromValue(2);
                         fadeout.setToValue(0);
                         fadeout.setCycleCount(1);
                         fadeout.play();

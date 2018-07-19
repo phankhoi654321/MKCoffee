@@ -48,11 +48,13 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -63,6 +65,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
+import javafx.util.converter.IntegerStringConverter;
 import mkcoffee.model.Customer;
 import mkcoffee.model.CustomerBuy;
 import mkcoffee.model.EmployeeSale;
@@ -626,6 +629,10 @@ public class MainViewController extends Thread {
     @FXML
     private TableView<ProductSales> orderTable;
     @FXML
+    private TableColumn<ProductSales, Integer> tableQuantity;
+    @FXML
+    private TableColumn<ProductSales, Integer> tableAmount;
+    @FXML
     private TableView<Customer> customerTable;
     @FXML
     private TableView<User> employeeTable;
@@ -853,9 +860,10 @@ public class MainViewController extends Thread {
         viewProductSales.setVisible(false);
 
         //edit quantity from table
-//        orderTable.setEditable(true);
-//        
-//        tableQuantity.setCellFactory(TextFieldTableCell.<ProductSales, Integer>forTableColumn(new IntegerStringConverter()));
+        orderTable.setEditable(true);
+
+        tableQuantity.setCellFactory(TextFieldTableCell.<ProductSales, Integer>forTableColumn(new IntegerStringConverter()));
+//        tableAmount.setCellFactory(TextFieldTableCell.<ProductSales, Integer>forTableColumn(new IntegerStringConverter()));
         //done
         // Make menu when right click to delete
         listContextMenu = new ContextMenu();
@@ -1023,8 +1031,34 @@ public class MainViewController extends Thread {
     // edit quantity from order Table
     @FXML
     public void changeQuantity(CellEditEvent edittedCell) {
+
         ProductSales productSelected = orderTable.getSelectionModel().getSelectedItem();
+        int checkStock = Datasource.getInstance().checkStock(productSelected.getProductName(), productSelected.getKind());
         productSelected.setQuantity(Integer.parseInt(edittedCell.getNewValue().toString()));
+        productSelected.setTotalPrice(productSelected.getPrice(), productSelected.getQuantity());
+
+        ObservableList<ProductSales> workingUsers = FXCollections.observableArrayList(orderTable.getItems());
+        orderTable.refresh();
+        orderTable.setItems(workingUsers);
+
+        ObservableList<ProductSales> allProducts = orderTable.getItems();
+        int rs = checkStock;
+        if (productSelected.getQuantity() > checkStock) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Item in store");
+            alert.setHeaderText("Quantity check");
+            alert.setContentText("Please check your store, this quantity is not enough \nYour Store is only have: " + rs + " pcs");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && (result.get() == ButtonType.OK)) {
+                productSelected.setQuantity(rs);
+                orderTable.refresh();
+                orderTable.setItems(workingUsers);
+                productSelected.setQuantity(rs);
+                productSelected.setTotalPrice(productSelected.getPrice(), productSelected.getQuantity());
+            }
+
+        }
+        totalPay.setText(priceWithDecimal(this.totalPay()));
     }
 
     private void makeFadeIn(VBox view) {
@@ -1150,18 +1184,25 @@ public class MainViewController extends Thread {
     //kiem tra ban dau ko du so luong trong kho tra ve null
     public ProductSales getProduct(Text productName, Button productKind, Label productPrice, TextField productQuantity) throws NumberFormatException {
         int checkStock = Datasource.getInstance().checkStock(productName.getText(), productKind.getText());
+        ObservableList<ProductSales> allProducts = orderTable.getItems();
         try {
             ProductSales product = new ProductSales();
             product.setProductName(productName.getText());
             product.setKind(productKind.getText());
             product.setUnit("pcs");
             product.setPrice(Integer.parseInt(productPrice.getText()));
-
+            int rs = checkStock;
             if (Integer.parseInt(productQuantity.getText()) > checkStock) {
+
+                for (int i = 0; i < allProducts.size(); i++) {
+                    if (allProducts.get(i).getProductName().equalsIgnoreCase(productName.getText()) && allProducts.get(i).getKind().equalsIgnoreCase(productKind.getText())) {
+                        rs = checkStock - allProducts.get(i).getQuantity();
+                    }
+                }
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Item in store");
                 alert.setHeaderText("Quantity check");
-                alert.setContentText("Please check your store, this quantity is not enough \nYour Store is only have: " + checkStock + " pcs");
+                alert.setContentText("Please check your store, this quantity is not enough \nYour Store is only have: " + rs + " pcs");
                 productQuantity.clear();
                 Optional<ButtonType> result = alert.showAndWait();
                 return null;
@@ -1172,6 +1213,10 @@ public class MainViewController extends Thread {
             } else {
                 product.setQuantity(Integer.parseInt(productQuantity.getText()));
                 product.setTotalPrice(Integer.parseInt(productPrice.getText()), product.getQuantity());
+//                for (int i = 0; i < allProducts.size(); i++) {
+//                    int rs = checkStock - allProducts.get(i).getQuantity();
+//                }
+//                
                 return product;
             }
         } catch (NumberFormatException ex) {
